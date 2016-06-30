@@ -1,3 +1,22 @@
 html {
-  
+
 }
+
+#tic-tac-toe {
+  margin: auto;
+  height: 34rem;
+  border: solid red;
+  width: 36rem;
+  overflow:auto;
+}
+
+.celt {
+  height: 10rem;
+  width: 10rem;
+  display: inline-flex;
+  border: solid blue;
+  font-size: 6rem;
+}
+
+.celt:hover { background-color: #4e2753; }
+.celt:active, .celt.active { background-color: #a13fad; }
