@@ -6,15 +6,26 @@ function TicTacToe() {
 
 
 TicTacToe.prototype.win = function(player) {
+
 };
 
 TicTacToe.prototype.play = function(celt) {
-  this._moves_counter++
-  if (this._moves_counter % 2 == 0) {
-	  celt.text(this._o)
-    //keep track of the moves by this player
-    celt.addClass('disable o')
-	  // TicTacToe.win(this._o)
+  if (celt.hasClass('disable')) {
+    alert("Don't you see it has been played?!!")
+  } else {
+
+    this._moves_counter++
+    if (this._moves_counter % 2 == 0) {
+  	  celt.text(this._o)
+      //keep track of the moves by this player
+      celt.addClass('disable o')
+  	  // this.win(celt)
+      console.log(celt);
+    } else {
+      celt.text(this._x)
+      //keep track of the moves by this player
+      celt.addClass('disable x')
+    }
   }
 };
 

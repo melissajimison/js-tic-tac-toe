@@ -16,7 +16,17 @@ html {
   display: inline-flex;
   border: solid blue;
   font-size: 6rem;
+  align: center;
+  background-color: white;
 }
 
 .celt:hover { background-color: #4e2753; }
 .celt:active, .celt.active { background-color: #a13fad; }
+
+.o {
+  background-color: green;
+}
+
+.x {
+  background-color: red;
+}
