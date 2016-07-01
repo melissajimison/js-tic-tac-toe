@@ -30,7 +30,6 @@ TicTacToe.prototype.reset = function() {
   this._x_victories = 0
   this._o_victories = 0
   this._emoji_counter = 0
-  $('.animal').show()
 };
 
 TicTacToe.prototype.draws = function() {
@@ -92,9 +91,11 @@ TicTacToe.prototype.play = function(celt) {
 
 TicTacToe.prototype.setEmojis = function() {
   if (this._emoji_counter === 0) {
+    $("#two-emoji").text(event.toElement.id)
     this._o = event.toElement.id;
     this._emoji_counter++
   } else if (this._emoji_counter === 1) {
+    $("#one-emoji").text(event.toElement.id)
     this._x = event.toElement.id;
     this._emoji_counter++
   }
@@ -123,18 +124,13 @@ TicTacToe.prototype.computerMove = function() {
 
 }
 
-TicTacToe.prototype.reset = function() {
-  this.newGame()
-
-}
-
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
   var newGame = $('#new-game')
   var emoj = $('.animal')
   var modes = $('.mode')
-  var reset = $('#reset')
+  var reseter = $('#reset')
 
   var ticTacToe = new TicTacToe()
 
@@ -161,9 +157,10 @@ $(document).ready(function() {
     ticTacToe.newGame()
   })
 
-  reset.on('click', function(event) {
+  reseter.on('click', function(event) {
     event.preventDefault()
     ticTacToe.reset()
+    emoj.show()
   })
 
 })

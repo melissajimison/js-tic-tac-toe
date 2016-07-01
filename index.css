@@ -90,6 +90,7 @@ html {
 .players {
   height: 10rem;
   border: solid yellow;
+  font-size: 6rem
 }
 
 .reset {
