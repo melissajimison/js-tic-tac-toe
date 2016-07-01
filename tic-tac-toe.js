@@ -51,6 +51,8 @@ TicTacToe.prototype.play = function(celt) {
     alert("Don't you see it has been played?!!")
   } else {
     this._moves_counter++
+    this._emoji_counter = 10
+
     if (this._moves_counter % 2 == 0) {
   	  celt.text(this._o)
       this._o_moves.push(celt[0].id)
