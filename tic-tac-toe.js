@@ -40,7 +40,7 @@ TicTacToe.prototype.win = function(celt_info) {
   }
   for (var one_comb of winner_comb ) {
     if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
-      alert(celt_info.text() + " have won!!")
+      alert(celt_info.text() + " has won!!")
       return true
     }
   }
@@ -83,6 +83,7 @@ $(document).ready(function() {
       ticTacToe._emoji_counter++
     } else if (ticTacToe._emoji_counter === 1) {
       ticTacToe._o = event.toElement.id;
+      ticTacToe._emoji_counter++
       }
   })
 
