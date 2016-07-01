@@ -50,6 +50,10 @@ TicTacToe.prototype.play = function(celt) {
       celt.addClass('disable x')
     }
   }
+
+  if (this.win(celt)) {
+    this.reset()
+  }
 };
 
 $(document).ready(function() {
@@ -58,7 +62,6 @@ $(document).ready(function() {
   var reset = $('#reset')
   var emoj = $('.animal')
   var ticTacToe = new TicTacToe()
-
   emoj.on('click', function(event) {
     event.preventDefault()
     ticTacToe._o = event.toElement.id;
@@ -69,13 +72,11 @@ $(document).ready(function() {
     event.preventDefault()
     var celt = $(this)
     ticTacToe.play(celt)
-    if (ticTacToe.win(celt)) {
-      ticTacToe.reset()
-    }
   })
 
   reset.on('click', function(event) {
     event.preventDefault()
     ticTacToe.reset()
   })
+
 })
