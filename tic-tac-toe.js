@@ -20,7 +20,15 @@ TicTacToe.prototype.reset = function() {
   $("#tic-tac-toe button").removeClass('x')
 };
 
+TicTacToe.prototype.draws = function() {
+  if (this._moves_counter === 9) {
+    alert("You both are too good!! Draws!!")
+    return true
+  }
+};
+
 TicTacToe.prototype.win = function(celt_info) {
+  this.draws()
   var winner_comb = this._winner_combinations
   if (celt_info.hasClass('o')) {
     var moves = this._o_moves
