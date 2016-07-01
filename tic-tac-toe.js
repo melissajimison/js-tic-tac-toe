@@ -1,4 +1,5 @@
 function TicTacToe() {
+  this._mode = null
   this._moves_counter = 0
   this._emoji_counter = 0
   this._o = "👩🏽"
@@ -32,7 +33,6 @@ TicTacToe.prototype.draws = function() {
 };
 
 TicTacToe.prototype.win = function(celt_info) {
-  this.draws()
   var winner_comb = this._winner_combinations
   if (celt_info.hasClass('o')) {
     var moves = this._o_moves
@@ -45,6 +45,7 @@ TicTacToe.prototype.win = function(celt_info) {
       return true
     }
   }
+  this.draws()
 };
 
 TicTacToe.prototype.play = function(celt) {
@@ -53,15 +54,20 @@ TicTacToe.prototype.play = function(celt) {
   } else {
     this._moves_counter++
     this._emoji_counter = 10
+    console.log("X moves",this._x_moves);
+    console.log("O moves",this._o_moves);
 
     if (this._moves_counter % 2 == 0) {
-  	  celt.text(this._o)
-      this._o_moves.push(celt[0].id)
-      celt.addClass('disable o')
-    } else {
-      celt.text(this._x)
-      this._x_moves.push(celt[0].id)
-      celt.addClass('disable x')
+  	     celt.text(this._o)
+         this._o_moves.push(celt[0].id)
+         celt.addClass('disable o')
+
+    } else if (this._moves_counter % 2 == 1) {
+        celt.text(this._x)
+        this._x_moves.push(celt[0].id)
+        celt.addClass('disable x')
+        this.computerMove()
+
     }
   }
 
@@ -72,20 +78,50 @@ TicTacToe.prototype.play = function(celt) {
 
 TicTacToe.prototype.setEmojis = function() {
   if (this._emoji_counter === 0) {
-    this._x = event.toElement.id;
-    this._emoji_counter++
-  } else if (this._emoji_counter === 1) {
     this._o = event.toElement.id;
     this._emoji_counter++
+  } else if (this._emoji_counter === 1) {
+    this._x = event.toElement.id;
+    this._emoji_counter++
   }
+}
+
+TicTacToe.prototype.onePlayer = function(mode) {
+    if (mode == "one-player"){
+      this._emoji_counter = 1
+      this._mode = "computer"
+    }
 };
+
+TicTacToe.prototype.computerMove = function() {
+
+  if (this._mode == 'computer') {
+    var celts_op = (Math.floor(Math.random()*8) + 1).toString()
+    var ran_celt = $('#'+celts_op)
+    ran_celt.text("💻")
+    ran_celt.addClass('disable o')
+    this._o_moves.push(celts_op)
+    this._moves_counter++
+    this.play(ran_celt);
+  } else {
+    return false
+  }
+
+}
 
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
   var new_game = $('#new-game')
   var emoj = $('.animal')
+  var modes = $('.mode')
   var ticTacToe = new TicTacToe()
+  modes.on('click', function(event) {
+    event.preventDefault()
+    var mode = $(this)[0].id
+    ticTacToe.onePlayer(mode)
+  })
+
   emoj.on('click', function(event) {
     event.preventDefault()
     ticTacToe.setEmojis()
