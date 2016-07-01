@@ -18,6 +18,7 @@ html {
   font-size: 6rem;
   align: center;
   background-color: white;
+  color: gray;
 }
 
 .celt:hover { background-color: #4e2753; }
@@ -29,4 +30,35 @@ html {
 
 .x {
   background-color: red;
+}
+
+#reset {
+  color:green;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:2rem;
+  outline:none;
+  width:16rem;
+  height: 4rem;
+}
+
+.reset-container {
+  margin: auto;
+  width: 16rem;
+  border: solid blue;
+  overflow: auto;
+}
+
+#emojis{
+
+}
+
+.animal{
+    height: 6rem;
+    width: 6rem;
+    display: inline-flex;
+    border: solid blue;
+    font-size: 4rem;
+    align: center;
+    background-color: white;
+    color: gray;
 }

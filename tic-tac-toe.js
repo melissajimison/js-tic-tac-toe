@@ -1,8 +1,8 @@
 function TicTacToe() {
   this._moves_counter = 0
-  this._o = "o"
+  this._o = "👩🏽"
   this._o_moves = []
-  this._x = "x"
+  this._x = "👱🏼"
   this._x_moves = []
   this._winner_combinations = [
     ['1','2','3'],['4','5','6'],['7','8','9'],['1','4','7'],
@@ -56,7 +56,14 @@ $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
   var reset = $('#reset')
+  var emoj = $('.animal')
   var ticTacToe = new TicTacToe()
+
+  emoj.on('click', function(event) {
+    event.preventDefault()
+    ticTacToe._o = event.toElement.id;
+
+  })
 
   celts.on('click', function(event) {
     event.preventDefault()
