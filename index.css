@@ -13,16 +13,14 @@ html {
   display: inline-block;
   border: solid red;
   overflow: auto;
-
 }
 
 #tic-tac-toe {
   height: 34rem;
   border: solid red;
   width: 36rem;
-  overflow:auto;
+  overflow: auto;
   display: inline-block;
-
 }
 
 .celt {
@@ -36,9 +34,7 @@ html {
   color: gray;
 }
 
-
 .animal:hover { border: solid .6rem orange; }
-
 .celt:hover { background-color: #4e2753; }
 .o { background-color: green; }
 .x { background-color: red; }
@@ -59,11 +55,16 @@ html {
   overflow: auto;
 }
 
+.player-container {
+  border: solid black;
+  width: 20rem;
+  float: left;
+}
+
 #emojis{
   border: solid yellow;
   width: 20rem;
   display: inline-block;
-
 }
 
 .animal{
@@ -77,18 +78,20 @@ html {
     color: gray;
 }
 
-
-
-.player-container {
-  border: solid black;
+.container-three {
+  border: solid red;
   width: 20rem;
-  float: left;
+  height: 34rem;
+  display: inline-block;
+
+  overflow: auto;
 }
 
-.container-three {
-  border: solid purple;
-  width: 20rem;
-  display: inline-block;
-  height: 30rem;
-  display: inline-block;
+.players {
+  height: 10rem;
+  border: solid yellow;
+}
+
+.reset {
+
 }

@@ -2,26 +2,34 @@ function TicTacToe() {
   this._mode = null
   this._moves_counter = 0
   this._emoji_counter = 0
-  this._o = "👩🏽"
+  this._o = "👩🏽" //player 1
   this._o_moves = []
-  this._x = "👱🏼"
+  this._o_victories = 0
+  this._x = "👱🏼" //player 1
   this._x_moves = []
+  this._x_victories = 0
   this._winner_combinations = [
     ['1','2','3'],['4','5','6'],['7','8','9'],['1','4','7'],
     ['2','5','8'],['3','6','9'],['1','5','9'],['3','5','7']
   ]
 };
 
-TicTacToe.prototype.new_game = function() {
+TicTacToe.prototype.newGame = function() {
   this._o_moves = []
   this._x_moves = []
   this._moves_counter = 0
-  this._emoji_counter = 0
   //remove the css classes
   $("#tic-tac-toe button").text("+");
   $("#tic-tac-toe button").removeClass('disable')
   $("#tic-tac-toe button").removeClass('o')
   $("#tic-tac-toe button").removeClass('x')
+};
+
+TicTacToe.prototype.reset = function() {
+  this.newGame()
+  this._x_victories = 0
+  this._o_victories = 0
+  this._emoji_counter = 0
   $('.animal').show()
 };
 
@@ -54,26 +62,32 @@ TicTacToe.prototype.play = function(celt) {
   } else {
     this._moves_counter++
     this._emoji_counter = 10
-    console.log("X moves",this._x_moves);
-    console.log("O moves",this._o_moves);
 
     if (this._moves_counter % 2 == 0) {
-  	     celt.text(this._o)
-         this._o_moves.push(celt[0].id)
-         celt.addClass('disable o')
+      var victories = this._o_victories
+      celt.text(this._o)
+      this._o_moves.push(celt[0].id)
+      celt.addClass('disable o')
+      if (this.win(celt)) {
+        this._o_victories++
+        $('#play-two').text(this._o_victories)
+        this.newGame()
+      }
 
     } else if (this._moves_counter % 2 == 1) {
-        celt.text(this._x)
-        this._x_moves.push(celt[0].id)
-        celt.addClass('disable x')
-        this.computerMove()
-
+      celt.text(this._x)
+      this._x_moves.push(celt[0].id)
+      celt.addClass('disable x')
+      this.computerMove()
+      if (this.win(celt)) {
+        this._x_victories++
+        $('#play-one').text(this._x_victories)
+        this.newGame()
+      }
     }
+
   }
 
-  if (this.win(celt)) {
-    this.new_game()
-  }
 };
 
 TicTacToe.prototype.setEmojis = function() {
@@ -109,13 +123,21 @@ TicTacToe.prototype.computerMove = function() {
 
 }
 
+TicTacToe.prototype.reset = function() {
+  this.newGame()
+
+}
+
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
-  var new_game = $('#new-game')
+  var newGame = $('#new-game')
   var emoj = $('.animal')
   var modes = $('.mode')
+  var reset = $('#reset')
+
   var ticTacToe = new TicTacToe()
+
   modes.on('click', function(event) {
     event.preventDefault()
     var mode = $(this)[0].id
@@ -132,12 +154,16 @@ $(document).ready(function() {
     var celt = $(this)
     ticTacToe.play(celt)
     emoj.hide()
-
   })
 
-  new_game.on('click', function(event) {
+  newGame.on('click', function(event) {
     event.preventDefault()
-    ticTacToe.new_game()
+    ticTacToe.newGame()
+  })
+
+  reset.on('click', function(event) {
+    event.preventDefault()
+    ticTacToe.reset()
   })
 
 })
