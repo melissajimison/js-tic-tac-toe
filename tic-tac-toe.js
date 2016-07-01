@@ -10,6 +10,15 @@ function TicTacToe() {
   ]
 };
 
+TicTacToe.prototype.reset = function() {
+  this._o_moves = []
+  this._x_moves = []
+  //remove the css classes
+  $("#tic-tac-toe button").text("+");
+  $("#tic-tac-toe button").removeClass('disable')
+  $("#tic-tac-toe button").removeClass('o')
+  $("#tic-tac-toe button").removeClass('x')
+};
 
 TicTacToe.prototype.win = function(celt_info) {
   var winner_comb = this._winner_combinations
@@ -47,7 +56,7 @@ TicTacToe.prototype.play = function(celt) {
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
-  var reset = main.children('.reset')
+  var reset = $('#reset')
   var ticTacToe = new TicTacToe()
 
   celts.on('click', function(event) {
@@ -59,7 +68,7 @@ $(document).ready(function() {
 
   reset.on('click', function(event) {
     event.preventDefault()
-    var celt = $(this)
-    ticTacToe.reset()
+    var reseter = $(this)
+    ticTacToe.reset(reseter)
   })
 })
