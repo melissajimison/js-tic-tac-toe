@@ -3,11 +3,12 @@ html {
 }
 
 #tic-tac-toe {
-  margin: auto;
   height: 34rem;
   border: solid red;
   width: 36rem;
   overflow:auto;
+  display: inline-block;
+
 }
 
 .celt {
@@ -21,16 +22,12 @@ html {
   color: gray;
 }
 
+
+.animal:hover { border: solid .6rem orange; }
+
 .celt:hover { background-color: #4e2753; }
-.celt:active, .celt.active { background-color: #a13fad; }
-
-.o {
-  background-color: green;
-}
-
-.x {
-  background-color: red;
-}
+.o { background-color: green; }
+.x { background-color: red; }
 
 #reset {
   color:green;
@@ -49,6 +46,9 @@ html {
 }
 
 #emojis{
+  border: solid yellow;
+  width: 20rem;
+  display: inline-block;
 
 }
 

@@ -21,6 +21,7 @@ TicTacToe.prototype.reset = function() {
   $("#tic-tac-toe button").removeClass('disable')
   $("#tic-tac-toe button").removeClass('o')
   $("#tic-tac-toe button").removeClass('x')
+  $('.animal').show()
 };
 
 TicTacToe.prototype.draws = function() {
@@ -94,6 +95,8 @@ $(document).ready(function() {
     event.preventDefault()
     var celt = $(this)
     ticTacToe.play(celt)
+    emoj.hide()
+
   })
 
   reset.on('click', function(event) {
