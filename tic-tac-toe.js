@@ -1,5 +1,6 @@
 function TicTacToe() {
   this._moves_counter = 0
+  this._emoji_counter = 0
   this._o = "👩🏽"
   this._o_moves = []
   this._x = "👱🏼"
@@ -13,6 +14,8 @@ function TicTacToe() {
 TicTacToe.prototype.reset = function() {
   this._o_moves = []
   this._x_moves = []
+  this._moves_counter = 0
+  this._emoji_counter = 0
   //remove the css classes
   $("#tic-tac-toe button").text("+");
   $("#tic-tac-toe button").removeClass('disable')
@@ -37,7 +40,7 @@ TicTacToe.prototype.win = function(celt_info) {
   }
   for (var one_comb of winner_comb ) {
     if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
-      alert("You have won!!")
+      alert(celt_info.text() + " have won!!")
       return true
     }
   }
@@ -59,6 +62,9 @@ TicTacToe.prototype.play = function(celt) {
     }
   }
 
+  console.log("mobes", this._moves_counter);
+  console.log("emoji", this._emoji_counter);
+
   if (this.win(celt)) {
     this.reset()
   }
@@ -72,8 +78,12 @@ $(document).ready(function() {
   var ticTacToe = new TicTacToe()
   emoj.on('click', function(event) {
     event.preventDefault()
-    ticTacToe._o = event.toElement.id;
-
+    if (ticTacToe._emoji_counter === 0) {
+      ticTacToe._x = event.toElement.id;
+      ticTacToe._emoji_counter++
+    } else if (ticTacToe._emoji_counter === 1) {
+      ticTacToe._o = event.toElement.id;
+      }
   })
 
   celts.on('click', function(event) {
