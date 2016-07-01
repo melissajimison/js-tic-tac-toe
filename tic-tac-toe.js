@@ -1,49 +1,65 @@
 function TicTacToe() {
-  this._o = "o"
-  this._x = "x"
   this._moves_counter = 0
+  this._o = "o"
+  this._o_moves = []
+  this._x = "x"
+  this._x_moves = []
+  this._winner_combinations = [
+    ['1','2','3'],['4','5','6'],['7','8','9'],['1','4','7'],
+    ['2','5','8'],['3','6','9'],['1','5','9'],['3','5','7']
+  ]
 };
 
 
-TicTacToe.prototype.win = function(player) {
+TicTacToe.prototype.win = function(celt_info) {
+  var winner_comb = this._winner_combinations
 
+  if (celt_info.hasClass('o')) {
+    var moves = this._o_moves
+  } else if (celt_info.hasClass('x')) {
+    var moves = this._x_moves
+  }
+
+  for (var one_comb of winner_comb ) {
+    if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
+      alert("You have won!!")
+    }
+  }
 };
 
 TicTacToe.prototype.play = function(celt) {
   if (celt.hasClass('disable')) {
     alert("Don't you see it has been played?!!")
   } else {
-
     this._moves_counter++
     if (this._moves_counter % 2 == 0) {
   	  celt.text(this._o)
-      //keep track of the moves by this player
+      this._o_moves.push(celt[0].id)
       celt.addClass('disable o')
-  	  // this.win(celt)
-      console.log(celt);
     } else {
       celt.text(this._x)
-      //keep track of the moves by this player
+      this._x_moves.push(celt[0].id)
       celt.addClass('disable x')
     }
   }
 };
 
-
-
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
-  console.log('create and begin the game here!');
-
+  var reset = main.children('.reset')
   var ticTacToe = new TicTacToe()
 
   celts.on('click', function(event) {
     event.preventDefault()
     var celt = $(this)
-    console.log(celt);
     ticTacToe.play(celt)
+    ticTacToe.win(celt)
   })
 
-
+  reset.on('click', function(event) {
+    event.preventDefault()
+    var celt = $(this)
+    ticTacToe.reset()
+  })
 })
