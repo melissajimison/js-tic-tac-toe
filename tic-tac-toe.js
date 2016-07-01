@@ -11,7 +11,7 @@ function TicTacToe() {
   ]
 };
 
-TicTacToe.prototype.reset = function() {
+TicTacToe.prototype.new_game = function() {
   this._o_moves = []
   this._x_moves = []
   this._moves_counter = 0
@@ -66,7 +66,7 @@ TicTacToe.prototype.play = function(celt) {
   }
 
   if (this.win(celt)) {
-    this.reset()
+    this.new_game()
   }
 };
 
@@ -83,7 +83,7 @@ TicTacToe.prototype.setEmojis = function() {
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
-  var reset = $('#reset')
+  var new_game = $('#new-game')
   var emoj = $('.animal')
   var ticTacToe = new TicTacToe()
   emoj.on('click', function(event) {
@@ -99,9 +99,9 @@ $(document).ready(function() {
 
   })
 
-  reset.on('click', function(event) {
+  new_game.on('click', function(event) {
     event.preventDefault()
-    ticTacToe.reset()
+    ticTacToe.new_game()
   })
 
 })

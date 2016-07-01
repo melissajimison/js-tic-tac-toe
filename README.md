@@ -18,5 +18,5 @@ Create a JavaScript class that, when instantiated, draws a playable tic-tac-toe 
     + Selects the first available spot OR
     + Randomly selects a spot OR
     + Picks the "best" spot (whatever best means)
-- Add a _new game_ button that resets the board, allowing a fresh game to be played.
+- Add a _new game_ button that new-games the board, allowing a fresh game to be played.
 - Keep track of wins and losses for both players, updating the counts whenever a game ends.

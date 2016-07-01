@@ -43,7 +43,7 @@ html {
 .o { background-color: green; }
 .x { background-color: red; }
 
-#reset {
+#new-game {
   color:green;
   font-family:Arial, Helvetica, sans-serif;
   font-size:2rem;
@@ -52,7 +52,7 @@ html {
   height: 4rem;
 }
 
-.reset-container {
+.new-game-container {
   margin: auto;
   width: 16rem;
   border: solid blue;
