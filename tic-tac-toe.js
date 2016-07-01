@@ -69,7 +69,6 @@ $(document).ready(function() {
 
   reset.on('click', function(event) {
     event.preventDefault()
-    var reseter = $(this)
     ticTacToe.reset()
   })
 })
