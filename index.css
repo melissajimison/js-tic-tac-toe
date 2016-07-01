@@ -2,6 +2,20 @@ html {
 
 }
 
+.raw {
+  height: 35rem;
+  border: solid orange;
+  overflow: auto;
+}
+
+.container-one {
+  width: 22rem;
+  display: inline-block;
+  border: solid red;
+  overflow: auto;
+
+}
+
 #tic-tac-toe {
   height: 34rem;
   border: solid red;
@@ -61,4 +75,20 @@ html {
     align: center;
     background-color: white;
     color: gray;
+}
+
+
+
+.player-container {
+  border: solid black;
+  width: 20rem;
+  float: left;
+}
+
+.container-three {
+  border: solid purple;
+  width: 20rem;
+  display: inline-block;
+  height: 30rem;
+  display: inline-block;
 }
