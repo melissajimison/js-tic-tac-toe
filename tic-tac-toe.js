@@ -22,16 +22,15 @@ TicTacToe.prototype.reset = function() {
 
 TicTacToe.prototype.win = function(celt_info) {
   var winner_comb = this._winner_combinations
-
   if (celt_info.hasClass('o')) {
     var moves = this._o_moves
   } else if (celt_info.hasClass('x')) {
     var moves = this._x_moves
   }
-
   for (var one_comb of winner_comb ) {
     if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
       alert("You have won!!")
+      return true
     }
   }
 };
@@ -63,12 +62,14 @@ $(document).ready(function() {
     event.preventDefault()
     var celt = $(this)
     ticTacToe.play(celt)
-    ticTacToe.win(celt)
+    if (ticTacToe.win(celt)) {
+      ticTacToe.reset()
+    }
   })
 
   reset.on('click', function(event) {
     event.preventDefault()
     var reseter = $(this)
-    ticTacToe.reset(reseter)
+    ticTacToe.reset()
   })
 })
