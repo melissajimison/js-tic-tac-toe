@@ -1,23 +1,45 @@
 html {
+  font-family: 'Indie Flower', cursive;
+}
 
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .raw {
   height: 35rem;
-  border: solid orange;
-  overflow: auto;
+  overflow: visible;
 }
 
 .container-one {
+  height: 34rem;
   width: 22rem;
   display: inline-block;
-  border: solid red;
   overflow: auto;
+}
+
+#one-player, #two-player, #reset {
+  height: 3rem;
+  width: 9rem;
+  font-size: 1.5rem;
+  font-family: 'Indie Flower', cursive;
+  /*border: solid magenta;*/
+  background-color: magenta;
+}
+
+#one-player:hover, #two-player:hover, #reset:hover {
+  background-color: pink;
+}
+
+#reset {
+  width: 12rem;
+  margin-left: 3rem;
 }
 
 #tic-tac-toe {
   height: 34rem;
-  border: solid red;
   width: 36rem;
   overflow: auto;
   display: inline-block;
@@ -40,29 +62,27 @@ html {
 .x { background-color: red; }
 
 #new-game {
-  color:green;
   font-family:Arial, Helvetica, sans-serif;
   font-size:2rem;
   outline:none;
   width:16rem;
   height: 4rem;
+  font-family: 'Indie Flower', cursive;
+  background-color: magenta;
 }
 
 .new-game-container {
   margin: auto;
   width: 16rem;
-  border: solid blue;
   overflow: auto;
 }
 
 .player-container {
-  border: solid black;
   width: 20rem;
-  float: left;
+  margin-bottom: 0.6rem;
 }
 
 #emojis{
-  border: solid yellow;
   width: 20rem;
   display: inline-block;
 }
@@ -71,25 +91,24 @@ html {
     height: 6rem;
     width: 6rem;
     display: inline-flex;
-    border: solid blue;
+    border: solid #32ff32;
     font-size: 4rem;
     align: center;
     background-color: white;
-    color: gray;
+    border-radius: 25px;
+
 }
 
 .container-three {
-  border: solid red;
   width: 20rem;
   height: 34rem;
   display: inline-block;
-
+  border: solid yellow;
   overflow: auto;
 }
 
 .players {
   height: 10rem;
-  border: solid yellow;
   font-size: 6rem
 }
 
