@@ -25,7 +25,7 @@ TicTacToe.prototype.reset = function() {
 
 TicTacToe.prototype.draws = function() {
   if (this._moves_counter === 9) {
-    alert("You both are too good!! Draws!!")
+    alert("You both, " + this._x + " and " + this._o + " are too good!! Draws!!")
     return true
   }
 };
@@ -64,11 +64,18 @@ TicTacToe.prototype.play = function(celt) {
     }
   }
 
-  console.log("mobes", this._moves_counter);
-  console.log("emoji", this._emoji_counter);
-
   if (this.win(celt)) {
     this.reset()
+  }
+};
+
+TicTacToe.prototype.setEmojis = function() {
+  if (this._emoji_counter === 0) {
+    this._x = event.toElement.id;
+    this._emoji_counter++
+  } else if (this._emoji_counter === 1) {
+    this._o = event.toElement.id;
+    this._emoji_counter++
   }
 };
 
@@ -80,13 +87,7 @@ $(document).ready(function() {
   var ticTacToe = new TicTacToe()
   emoj.on('click', function(event) {
     event.preventDefault()
-    if (ticTacToe._emoji_counter === 0) {
-      ticTacToe._x = event.toElement.id;
-      ticTacToe._emoji_counter++
-    } else if (ticTacToe._emoji_counter === 1) {
-      ticTacToe._o = event.toElement.id;
-      ticTacToe._emoji_counter++
-      }
+    ticTacToe.setEmojis()
   })
 
   celts.on('click', function(event) {
