@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @melissajimison
- Unwatch 1
-  Star 0
- Fork 48 melissajimison/js-tic-tac-toe
-forked from Ada-C5/js-tic-tac-toe
- Code  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
-Tree: 287de2cb86 Find file Copy pathjs-tic-tac-toe/tic-tac-toe.js
-287de2c  on Jul 1, 2016
-@melissajimison melissajimison added the emojis to the scores table
-2 contributors @melissajimison @jnf
-RawBlameHistory     
-167 lines (144 sloc)  3.91 KB
 function TicTacToe() {
   this._mode = null
   this._moves_counter = 0
