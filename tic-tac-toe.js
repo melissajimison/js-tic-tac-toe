@@ -63,30 +63,26 @@ TicTacToe.prototype.play = function(celt) {
     this._emoji_counter = 10
 
     if (this._moves_counter % 2 == 0) {
-      var victories = this._o_victories
       celt.text(this._o)
       this._o_moves.push(celt[0].id)
       celt.addClass('disable o')
       if (this.win(celt)) {
-        this._o_victories++
         $('#play-two').text(this._o_victories)
+        this._o_victories++
         this.newGame()
       }
-
     } else if (this._moves_counter % 2 == 1) {
       celt.text(this._x)
       this._x_moves.push(celt[0].id)
       celt.addClass('disable x')
       this.computerMove()
       if (this.win(celt)) {
-        this._x_victories++
         $('#play-one').text(this._x_victories)
+        this._x_victories++
         this.newGame()
       }
     }
-
   }
-
 };
 
 TicTacToe.prototype.setEmojis = function() {

@@ -2,6 +2,10 @@ html {
   font-family: 'Indie Flower', cursive;
 }
 
+body{
+  background-image: url(https://cdn.elegantthemes.com/blog/wp-content/uploads/2013/09/bg-11-full.jpg);
+}
+
 h1 {
   font-size: 4rem;
   text-align: center;
@@ -25,7 +29,6 @@ h1 {
   width: 9rem;
   font-size: 1.5rem;
   font-family: 'Indie Flower', cursive;
-  /*border: solid magenta;*/
   background-color: magenta;
 }
 
