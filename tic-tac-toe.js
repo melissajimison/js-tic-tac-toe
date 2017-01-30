@@ -35,7 +35,7 @@ TicTacToe.prototype.reset = function() {
 TicTacToe.prototype.draws = function() {
   if (this._moves_counter === 9) {
     alert("You both, " + this._x + " and " + this._o + " are too good!! Draws!!")
-    return true
+    return false
   }
 };
 
@@ -43,16 +43,28 @@ TicTacToe.prototype.win = function(celt_info) {
   var winner_comb = this._winner_combinations
   if (celt_info.hasClass('o')) {
     var moves = this._o_moves
+    var theId = '#play-two'
   } else if (celt_info.hasClass('x')) {
     var moves = this._x_moves
+    var theId = '#play-one'
   }
+
   for (var one_comb of winner_comb ) {
     if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
+      setTimeout(function() {
       alert(celt_info.text() + " has won!!")
-      return true
+      if (theId == '#play-two') {
+        $('#play-two').text(this._o_victories)
+        this._o_victories++
+      } else {
+        $('#play-one').text(this._x_victories)
+        this._x_victories++
+      }
+      }, 0);
+      this.newGame();
     }
   }
-  this.draws()
+  this.draws();
 };
 
 TicTacToe.prototype.play = function(celt) {
@@ -66,22 +78,13 @@ TicTacToe.prototype.play = function(celt) {
       celt.text(this._o)
       this._o_moves.push(celt[0].id)
       celt.addClass('disable o')
-      if (this.win(celt)) {
-        $('#play-two').text(this._o_victories)
-        this._o_victories++
-        this.newGame()
-      }
     } else if (this._moves_counter % 2 == 1) {
       celt.text(this._x)
       this._x_moves.push(celt[0].id)
       celt.addClass('disable x')
       this.computerMove()
-      if (this.win(celt)) {
-        $('#play-one').text(this._x_victories)
-        this._x_victories++
-        this.newGame()
-      }
     }
+    this.win(celt)
   }
 };
 
@@ -98,10 +101,10 @@ TicTacToe.prototype.setEmojis = function() {
 }
 
 TicTacToe.prototype.onePlayer = function(mode) {
-    if (mode == "one-player"){
-      this._emoji_counter = 1
-      this._mode = "computer"
-    }
+  if (mode == "one-player") {
+    this._emoji_counter = 1
+    this._mode = "computer"
+  }
 };
 
 TicTacToe.prototype.computerMove = function() {
@@ -123,7 +126,7 @@ TicTacToe.prototype.computerMove = function() {
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
-  var newGame = $('#new-game')
+  var newGameBoton = $('#new-game')
   var emoj = $('.animal')
   var modes = $('.mode')
   var reseter = $('#reset')
@@ -148,7 +151,7 @@ $(document).ready(function() {
     emoj.hide()
   })
 
-  newGame.on('click', function(event) {
+  newGameBoton.on('click', function(event) {
     event.preventDefault()
     ticTacToe.newGame()
   })
