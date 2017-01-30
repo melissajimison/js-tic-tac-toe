@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @melissajimison
+ Unwatch 1
+  Star 0
+ Fork 48 melissajimison/js-tic-tac-toe
+forked from Ada-C5/js-tic-tac-toe
+ Code  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
+Tree: 287de2cb86 Find file Copy pathjs-tic-tac-toe/tic-tac-toe.js
+287de2c  on Jul 1, 2016
+@melissajimison melissajimison added the emojis to the scores table
+2 contributors @melissajimison @jnf
+RawBlameHistory     
+167 lines (144 sloc)  3.91 KB
 function TicTacToe() {
   this._mode = null
   this._moves_counter = 0
@@ -35,7 +53,7 @@ TicTacToe.prototype.reset = function() {
 TicTacToe.prototype.draws = function() {
   if (this._moves_counter === 9) {
     alert("You both, " + this._x + " and " + this._o + " are too good!! Draws!!")
-    return false
+    return true
   }
 };
 
@@ -43,29 +61,16 @@ TicTacToe.prototype.win = function(celt_info) {
   var winner_comb = this._winner_combinations
   if (celt_info.hasClass('o')) {
     var moves = this._o_moves
-    var theId = '#play-two'
   } else if (celt_info.hasClass('x')) {
     var moves = this._x_moves
-    var theId = '#play-one'
   }
-
   for (var one_comb of winner_comb ) {
     if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
-      this = that
-      setTimeout(function() {
       alert(celt_info.text() + " has won!!")
-      if (theId == '#play-two') {
-        $('#play-two').text(this._o_victories)
-        that._o_victories++
-      } else {
-        $('#play-one').text(this._x_victories)
-        that._x_victories++
-      }
-      }, 0);
-      this.newGame();
+      return true
     }
   }
-  this.draws();
+  this.draws()
 };
 
 TicTacToe.prototype.play = function(celt) {
@@ -76,17 +81,30 @@ TicTacToe.prototype.play = function(celt) {
     this._emoji_counter = 10
 
     if (this._moves_counter % 2 == 0) {
+      var victories = this._o_victories
       celt.text(this._o)
       this._o_moves.push(celt[0].id)
       celt.addClass('disable o')
+      if (this.win(celt)) {
+        this._o_victories++
+        $('#play-two').text(this._o_victories)
+        this.newGame()
+      }
+
     } else if (this._moves_counter % 2 == 1) {
       celt.text(this._x)
       this._x_moves.push(celt[0].id)
       celt.addClass('disable x')
       this.computerMove()
+      if (this.win(celt)) {
+        this._x_victories++
+        $('#play-one').text(this._x_victories)
+        this.newGame()
+      }
     }
-    this.win(celt)
+
   }
+
 };
 
 TicTacToe.prototype.setEmojis = function() {
@@ -102,10 +120,10 @@ TicTacToe.prototype.setEmojis = function() {
 }
 
 TicTacToe.prototype.onePlayer = function(mode) {
-  if (mode == "one-player") {
-    this._emoji_counter = 1
-    this._mode = "computer"
-  }
+    if (mode == "one-player"){
+      this._emoji_counter = 1
+      this._mode = "computer"
+    }
 };
 
 TicTacToe.prototype.computerMove = function() {
@@ -127,7 +145,7 @@ TicTacToe.prototype.computerMove = function() {
 $(document).ready(function() {
   var main = $('#tic-tac-toe')
   var celts = main.children('.celt')
-  var newGameBoton = $('#new-game')
+  var newGame = $('#new-game')
   var emoj = $('.animal')
   var modes = $('.mode')
   var reseter = $('#reset')
@@ -152,7 +170,7 @@ $(document).ready(function() {
     emoj.hide()
   })
 
-  newGameBoton.on('click', function(event) {
+  newGame.on('click', function(event) {
     event.preventDefault()
     ticTacToe.newGame()
   })
