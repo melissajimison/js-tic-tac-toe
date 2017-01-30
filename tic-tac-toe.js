@@ -51,14 +51,15 @@ TicTacToe.prototype.win = function(celt_info) {
 
   for (var one_comb of winner_comb ) {
     if ( moves.includes(one_comb[0])&& moves.includes(one_comb[1]) && moves.includes(one_comb[2])) {
+      this = that
       setTimeout(function() {
       alert(celt_info.text() + " has won!!")
       if (theId == '#play-two') {
         $('#play-two').text(this._o_victories)
-        this._o_victories++
+        that._o_victories++
       } else {
         $('#play-one').text(this._x_victories)
-        this._x_victories++
+        that._x_victories++
       }
       }, 0);
       this.newGame();
